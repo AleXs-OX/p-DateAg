@@ -15,7 +15,17 @@ public class PDatePrincipal {
 		
 		System.out.println(myFecha);
 		
+		
+		
+		Date today;
 
+		try {
+			today = new Date(1, 14, 2017);
+			today.setDay(777);
+			System.out.println(today.toString());
+		} catch (DateException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

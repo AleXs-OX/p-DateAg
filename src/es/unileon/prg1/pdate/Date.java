@@ -8,7 +8,7 @@ package es.unileon.prg1.pdate;
 public class Date {
 	private int day;
 	private int month;
-	private in year;
+	private int year;
 	
 	//Constructor clase date
 
@@ -19,10 +19,12 @@ public class Date {
 		}
 		
 		
-		public Date(int day, int month, int year) {
-			this.date = day;
-			this.month = month;
-			this.year = year;
+		public Date(int day, int month, int year) throw  DateException {
+			
+			
+			setDay(day);
+			setYear(year);
+			setMonth(month);
 		}
 
 
@@ -33,6 +35,13 @@ public class Date {
 
 		public void setDay(int day) {
 			this.day = day;
+			
+			if((day>0) && (day <32)) {
+				this.day = day;
+			}
+			else {
+				throw new DateException("Error en el dia introducido");
+			}
 		}
 
 
@@ -43,27 +52,43 @@ public class Date {
 
 		public void setMonth(int month) {
 			this.month = month;
+			if((month>0) && (month <12)) {
+				this.month = month;
+			}
+			else {
+				throw new DateException("Error en el mes introducido");
+			}
 		}
 
 
-		public in getYear() {
+		public int getYear() {
 			return year;
 		}
 
 
 		public void setYear(in year) {
 			this.year = year;
+			if((year > -1)) {
+				this.year= year;
+			}
+			else {
+				throw new DateException("Error en el año introducido");
+			}
 		}
 
 
 		public boolean isSameYear(Date myFecha) {
-			boolean retorno = alse;
+			boolean retorno = false;
 			if(this.year== miFecha.getYear()) {
 				
-				retorno = true;
-				
-				
+				retorno = true;}
 			}
+			public boolean isSameYearSinIF(Date myFecha) {
+					
+					retorno = (this.year == miFecha.getYear());
+					
+					
+				}
 			return  retorno;
 		}
 
