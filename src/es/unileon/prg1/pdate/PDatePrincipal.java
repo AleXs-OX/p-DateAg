@@ -2,9 +2,9 @@ package es.unileon.prg1.pdate;
 
 public class PDatePrincipal {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DateException {
 		Date myFecha =  new Date();
-		Date myFeDate2 = new Date(30,10,2019);
+		Date myFeDate2 = new Date(30,10,1999);
 		
 		if(myFecha.isSameYear(myFeDate2)) {
 			System.out.println("Es la misma fecha");
@@ -20,7 +20,7 @@ public class PDatePrincipal {
 		Date today;
 
 		try {
-			today = new Date(1, 14, 2017);
+			today = new Date(1, 14, 1999);
 			today.setDay(777);
 			System.out.println(today.toString());
 		} catch (DateException e) {
