@@ -12,9 +12,9 @@ public class Date {
 	
 	//Constructor clase date
 
-		public Date() {
+		public Date(Date today) {
 			this.day = 1;
-			this.month = 1;
+			this.month = 7;
 			this.year = 2017;
 		}
 		
@@ -91,9 +91,8 @@ public class Date {
 					
 					return retorno;	
 				}
-		public StringBuffer tomorrow(int day,int month,int year) {
-			StringBuffer mesTomorrow = new StringBuffer();
-			this.day = day; this.month = month; this.year = year;
+		public Date tomorrow() {
+			int day = this.day, month = this.month, year = this.year;
 			if (month == 2) { // Mes Febrero
 				if (day < 28){
 					day = day + 1;
@@ -128,12 +127,12 @@ public class Date {
 						month = month+1;}
 						}
 					}
-			mesTomorrow.append(day+"/"+month+"/"+year);
-			mesTomorrow.toString();
+			mesTomorrow = day  
+;
 			return mesTomorrow;
 			}
-		public String getMonthName(int month) {
-			int mes = getMonth();
+		public String getMonthName() {
+			int mes = this.month;
 			StringBuffer mesNombre = new StringBuffer();
 			switch (mes) {
 				case 1: mesNombre.append("Enero"); break;
@@ -159,10 +158,10 @@ public class Date {
 				return compruebaDay;
 		}
 		
-		public String getSeasonName(int month){
+		public String getSeasonName(){
 			int caso = 0;
 			StringBuffer season = new StringBuffer();
-			caso = getMonth();
+			caso = this.month;
 			switch (caso) {
 				case 1:;
 				case 2: season.append("Invierno");
@@ -201,32 +200,50 @@ public class Date {
 				retorno = true;}
 				return retorno;	
 			}
-		public String monthsLeft(Date myFecha){
+		public String getMonthsLeft(){
 				StringBuffer mesesRestantes = new StringBuffer();
-				int mes = 0;
-				mes = myFecha.getMonth();
+				int mes = this.month;
+				mes = getMonth();
 				for (int i = mes+1; i < 12; i++){
 
 					mesesRestantes.append(i+"/");
 				}
 				return mesesRestantes.toString();
 			}	
-
-		public int daysOfMonth (int day){
+		public int daysOfMonth() {
+			int mes = this.month;
+			int salida = 0;
+			switch(mes){
+			case 1: salida = 31; break;
+			case 2: salida = 28;break;
+			case 3: salida = 31; break;
+			case 4: salida = 30; break;
+			case 5: salida = 31; break;
+			case 6: salida = 30; break;
+			case 7: salida = 31; break;
+			case 8: salida = 31; break;
+			case 9: salida = 30; break;
+			case 10: salida = 31; break;
+			case 11: salida = 30; break;
+			case 12: salida = 31; break;
+			}
+			return salida;
+			
+		}
+		public int getDaysLeftOfMonth(){
 				int salida = 0;
-				int i;
-				day = getDay();
-				for (i = day+1; i < 32; i++){
+				int day = this.day;
+				for (int i = day+1; i < 32; i++){
 
 					salida++;
 				}
 					return salida; //Total de dias restantes
 			}
 
-		public String monthsSameNumber(Date myFecha){
-			StringBuffer meses =  new StringBuffer();
+		public String getMonthsSameDays(){
 			int mes = 0;
-			mes = myFecha.getMonth();
+			StringBuffer meses =  new StringBuffer();
+			mes = this.month;
 			if(mes == 2){
 				meses.append("Febrero");
 			}
@@ -240,16 +257,16 @@ public class Date {
 			return meses.toString();
 		}
 
-		public int attempsRandomOne(Date myFecha){
+		public int numRandomTriesEqualDate(){
 			double intentos = 0,diaRandom = 0, mesRandom = 0;
 			int contador = 0;
-			while(diaRandom !=  myFecha.getDay()){
+			while(diaRandom != this.day){
 
 				 diaRandom = Math.floor(Math.random()*(31+1));
 
 				 	contador++;
 			}
-			while(mesRandom !=  myFecha.getMonth()){
+			while(mesRandom != this.day){
 
 				 mesRandom = Math.floor(Math.random()*(12+1));
 
@@ -258,7 +275,7 @@ public class Date {
 				return contador;
 		}
 
-		public int attempsRandomTwo(Date myFecha){
+		public int attempsRandomTwo(){
 			double intentos = 0,diaRandom = 0, mesRandom = 0;
 			int contador = 0;
 			do{
@@ -267,7 +284,7 @@ public class Date {
 
 				 	contador++;
 
-					}while(diaRandom !=  myFecha.getDay());
+					}while(diaRandom !=  this.day);
 
 			do{
 
@@ -275,14 +292,14 @@ public class Date {
 
 				 	contador++;
 
-					}while(mesRandom !=  myFecha.getMonth());
+					}while(mesRandom != this.month);
 
 				return contador;
 		}
-		public int countDays(Date myFecha){
+		public int countDays(int day){
 			int dia = 0, mes = 0, salida = 0;
-			dia = myFecha.getDay();
-			mes = myFecha.getMonth();
+			dia = this.day;
+			mes = this.month;
 			for(int i = 1; i < (mes*31); i++ ){
 
 				salida++;
@@ -290,10 +307,10 @@ public class Date {
 				return salida;
 		}
 
-		public String dayOfTheWeek(Date myFecha){ //Para 1999.
+		public String dayOfWeek(int day){ //Para 1999.
 			String salida = null;
 			int dias = 0, eleccion = 0;
-			dias = countDays(myFecha);
+			dias = countDays(this.day);
 			dias = dias%7;
 			switch(dias){
 
@@ -314,6 +331,41 @@ public class Date {
 				return salida.toString();
 				
 			}
+		public int daysPast() {
+			int day = this.day; int month = this.month;
+			if (month == 2) { // Mes Febrero
+				if (day > 1){
+					day = day - 1;
+				}
+				else{	day = 31;
+				}
+			}	
+			else if((month == 4)||(month == 6)||(month == 8)||(month == 9)) { 
+				//Abril, Junio, Septiembre y Noviembre.
+				if(day > 1){
+					day = day -1;
+				}
+				else {
+					if(month == 4) {
+						day = 31;
+					}
+					else {
+					day = 30;
+					
+					}
+				}
+			}
+			else if((month == 1)||(month == 3)||(month == 5)||(month == 7)||(month == 8)||(month == 9)||(month == 12)){
+					//Enero, Marzo, Mayo, Julio, Agosto, Octubre y Diciembre.
+					if(day > 1){
+						day = day -1;
+					}
+					else if(day == 1){
+						day = 31;
+					}
+			 }
+			return day;
+		}
 		//@Override
 		//Creado en clase de ejemplo
 		public String toStringClase() {
