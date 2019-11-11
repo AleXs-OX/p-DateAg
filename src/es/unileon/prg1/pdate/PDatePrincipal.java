@@ -3,7 +3,7 @@ package es.unileon.prg1.pdate;
 public class PDatePrincipal {
 
 	public static void main(String[] args) throws DateException {
-		Date myFecha =  new Date();
+		Date myFecha =  new Date(1,4,2014);
 		Date myFeDate2 = new Date(30,10,1999);
 		
 		if(myFecha.isSameYear(myFeDate2)) {

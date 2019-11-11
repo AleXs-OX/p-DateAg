@@ -12,7 +12,7 @@ public class Date {
 	
 	//Constructor clase date
 
-		public Date(Date today) {
+		public Date() {
 			this.day = 1;
 			this.month = 7;
 			this.year = 2017;
@@ -127,7 +127,7 @@ public class Date {
 						month = month+1;}
 						}
 					}
-			mesTomorrow = day  
+			
 ;
 			return mesTomorrow;
 			}
@@ -200,6 +200,13 @@ public class Date {
 				retorno = true;}
 				return retorno;	
 			}
+		public boolean isSame(Date myFecha2) {
+			boolean retorno = false;
+			if(this.month == myFecha2.getMonth()) {
+				
+				retorno = true;}
+				return retorno;	
+		}
 		public String getMonthsLeft(){
 				StringBuffer mesesRestantes = new StringBuffer();
 				int mes = this.month;
@@ -371,4 +378,4 @@ public class Date {
 		public String toStringClase() {
 			return "Date [day=" + day + ", month=" + month + "]";
 		}
-	}
+}
